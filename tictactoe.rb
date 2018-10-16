@@ -183,6 +183,12 @@ class Game
       puts "#{player.name} a gagné ! Bravo !!! ".colorize(:red)
       @board.print_board
     end
+     puts "Try again ? Y/N"                                                                  
+    choice = (gets.chomp).to_s.capitalize
+if choice == "Y"                                                                        
+       @board_game = Board.new
+       game = Game.new.start_game
+
   end
 
 #Ci dessous tentative pour faire rejouer une partie mais ne fonctionne pas
