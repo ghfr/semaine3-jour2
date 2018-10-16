@@ -42,7 +42,7 @@ class Board
 
   def initialize
     @boardcases = []
-    9.times do #Joueur 9 parties
+    9.times do #Joueur 9 parties -> On fait 9 cases
       @boardcases.push(BoardCase.new)
     end
   end
@@ -64,12 +64,11 @@ class Board
              7 | 8 | 9  ", "green")}"
      nombre = gets.chomp.to_i - 1
      redo unless (0..9).include? nombre # Si jamais supérieur à 9
-     break if @boardcases[nombre].validity(nombre) # Renvois si superieur à 9
+     break if @boardcases[nombre].validity(nombre) # Renvois si superieur à 9 -> Arrête la boucle si le nombre est compris entre 0 et 9
    end
 
    @boardcases[nombre].valeur = player.valeur
  end
-
 #definir le gagnant
 def victory
   gagne_si_ligne || gagne_si_colonne || gagne_si_diagonal
@@ -112,12 +111,11 @@ def print_board
   puts " #{boardcases[6]} | #{boardcases[7]} | #{boardcases[8]} "
 end # Ci dessus pour l'alignement des barres et la grille du morpion
 
-def est_pleine? #Va vérifier si le jeu a été rempli si autre chose que espace retourne faslse
+def est_pleine #Va vérifier si le jeu a été rempli si autre chose que espace retourne faslse
   @boardcases.each do |boardcase|
     return false if boardcase.to_s == ' '
   end
   true
-  puts" Game over"
 end
 end
 class Player
@@ -168,27 +166,23 @@ class Game
 
 
   def start_game
-    player = @player2
+    player = @player2 #On definis player sur player 2 pour changer player en player1 avec la condition qui suit
     loop do
       @board.print_board #Affiche jeu
-      if player == @player1
+      if player == @player1 #Si le joueur en cours est le joueur 1, alors on veut que ce soit au tour du joueur 2 de jouer
         player = @player2
       else
         player = @player1
       end
       @board.play(player)
-      break if @board.victory || @board.est_pleine?
+      break if @board.victory || @board.est_pleine
     end
     if @board.victory
       puts "#{player.name} a gagné ! Bravo !!! ".colorize(:red)
       @board.print_board
+    elsif @board.est_pleine
+      puts "Egalité !"
     end
-     puts "Try again ? Y/N"                                                                  
-    choice = (gets.chomp).to_s.capitalize
-if choice == "Y"                                                                        
-       @board_game = Board.new
-       game = Game.new.start_game
-
   end
 
 #Ci dessous tentative pour faire rejouer une partie mais ne fonctionne pas
