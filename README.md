@@ -1,4 +1,4 @@
-Création du jeu tictactoe (Thomas Léoty)
+Création du jeu tictactoe (Thomas Léoty et Alexandre de Temmerman)
 
 Voici les règles du programme :
 
